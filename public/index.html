@@ -1,43 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Web App</title>
   </head>
+  <header class="header">
+    <div class="sub_header">
+      <div class="left_header">
+        <div class="logo">
+          <a href="http://localhost:3000/"
+            ><img src="http://localhost:3000/img/logo.jpg" alt="logo" srcset=""
+          /></a>
+        </div>
+      </div>
+      <div class="rigth_header">
+        <div class="navbar">
+          <ul class="navbarui">
+            <li class="navbaruili">
+              <a class="a" href="http://localhost:3000/">Поиск</a>
+            </li>
+            <li class="navbaruili">
+              <a class="a" href="http://localhost:3000/about">О нас</a>
+            </li>
+            <li class="navbaruili">
+              <a class="a" href="http://localhost:3000/contacts">Контакты</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="root">
+      
+    </div>
+    <footer class="footer">
+      <div class="footer_about">
+        <p>
+          Агентство недвижимости — крупнейшая компания на рынке недвижимости,
+          лидер по продаже квартир, новостроек и загородной недвижимости г.
+          Владимира и Владимирского региона.
+        </p>
+        <p>
+          «Лучшая брокерская компания на рынке продажи жилья России в 2016 году
+          (численностью сотрудников больше 100 человек)». «Лучшая брокерская
+          компания на рынке загородной недвижимости России 2017». По результатам
+          конкурса «Профессиональное признание» РГР.
+        </p>
+        <p>
+          Мы делаем любые операции с недвижимостью такими же простыми, приятными
+          и безопасными, как поход в супермаркет!
+        </p>
+        <p>© 2006—2023 Компания Все права защищены.</p>
+      </div>
+    </footer>
   </body>
+  <script>
+    document.addEventListener("click", function (e) {
+      if_class = e.target.className;
+      if (if_class == "other_span") {
+        e.target.className = "other_span-red";
+      }
+      if (if_class == "other_span-red") {
+        e.target.className = "other_span";
+      }
+    });
+  </script>
 </html>

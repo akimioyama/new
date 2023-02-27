@@ -1,0 +1,25 @@
+.number {
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.2s linear;
+    background-color: transparent;
+    border: 1px solid teal;
+    color: teal;
+    font-size: 20px;
+}
+.number-active {
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.2s linear;
+    background-color: rgb(20, 219, 219);
+}
+.number:hover {
+    background-color: rgb(31, 191, 191);
+    color: white;
+}
