@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap");
 * {
-    font-family: "Montserrat"; 
-    
+    font-family: "Montserrat";
 }
 .body {
     font-family: "Montserrat", sans-serif;
@@ -525,18 +524,6 @@
     width: 100%;
     min-height: 550px;
 }
-.itc-slider__item {
-    flex: 0 0 50%;
-    max-width: 50%;
-    height: 550px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 7rem;
-}
-.itc-slider__item img {
-    width: 100%;
-}
 .h1main10 {
     padding: 30px 0 8px;
     position: relative;
@@ -554,7 +541,7 @@
     z-index: -1;
 }
 .item_footer {
-    margin-top: 150px;
+    margin-top: 30px;
     width: 100%;
     min-height: 620px;
 }
@@ -580,12 +567,12 @@
     margin-bottom: 10px;
 }
 .specifications_left {
-    width: 28%;
+    width: 40%;
     height: 100%;
     padding-left: 15px;
 }
 .specifications_rigth {
-    width: 72%;
+    width: 60%;
     height: 100%;
     padding-left: 10px;
 }
@@ -607,7 +594,7 @@
     margin-left: 15px;
 }
 .item_btn {
-    margin-top: 20%;
+    margin-left: 20%;
 }
 .admin {
     font-size: 35px;
@@ -624,7 +611,7 @@
 .left_admin {
     width: 40%;
 }
-.find_item_id{
+.find_item_id {
     margin-bottom: 15px;
 }
 .rigth_admin {
@@ -653,10 +640,8 @@
     color: black;
 }
 .about_admin_item {
-
 }
 .admin_item_header1 {
-
 }
 .admin_item_header {
     font-size: 25px;
@@ -695,3 +680,22 @@
     box-shadow: 0 0 15px rgba(22, 22, 22, 0.45);
     resize: none;
 }
+
+/* SLIDER */
+.carusel {
+    width: 100%;
+    min-height: 600px;
+}
+.itc-slider__item {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7rem;
+}
+.itc-slider__item img {
+    width: 100%;
+}
+
