@@ -131,7 +131,7 @@
     font-size: 25px;
     font-family: "Montserrat", sans-serif;
     border: none;
-    background-color: rgb(192, 242, 230);
+    background-color: rgba(227, 246, 242, 0.745);
 }
 .city,
 .district,
@@ -140,7 +140,8 @@
 .type_of_house,
 .new_building,
 .price,
-.floors {
+.floors,
+.paint {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -214,7 +215,7 @@
     text-align: center;
     margin-bottom: 25px;
 }
-.btn button {
+.btnbtn {
     font-size: 25px;
     font-family: "Montserrat", sans-serif;
     background-color: teal;
@@ -225,10 +226,26 @@
     cursor: pointer;
     transition: 0.5s linear;
 }
-.btn button:hover {
+.btnbtn:hover {
     background-color: rgb(3, 85, 85);
 }
+.btnbtn-min {
+    font-size: 15px;
+    padding: 0;
+}
+.btnmini {
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    transition: 0.5s linear;
+    cursor: pointer;
+    padding: 7px 15px 7px 15px;
 
+
+}
 .result {
     min-height: 500px;
 }
@@ -698,4 +715,47 @@
 .itc-slider__item img {
     width: 100%;
 }
-
+.qwe {
+    margin: 30px;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    height: 100%;
+}
+.signin {
+    width: 100%;
+    margin-right: 5%;
+}
+.singup {
+    width: 100%;
+    margin-left: 5%;
+}
+.body_signin {
+    display: block;
+}
+.input_signin {
+    width: 70%;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(227, 246, 242, 0.745);
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.new_btn {
+    margin-top: 15px;
+    color: white;
+    background-color: teal;
+    border: none;
+    font-size: 25px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+.new_btn:hover {
+    background-color: rgb(1, 85, 85);
+}

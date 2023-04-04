@@ -7,7 +7,7 @@ const Item = (props) => {
 
     return(
         <div className="item">
-              <a href={appi}>
+              <a href={appi} target="_blank">
                 <div className="item_img">
                   <img className="img" src={image} alt="" />
                   <div className="item_about">

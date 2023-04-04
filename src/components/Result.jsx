@@ -5,7 +5,7 @@ import { Loader } from "./UI/Loader";
 import { getPageCount } from "../utils/pages";
 import { Pages } from "./Pages";
 
-const Result = () => {
+const Result = ({ info }) => {
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,7 +28,8 @@ const Result = () => {
 
   useEffect(() => {
     restApi();
-  }, [page]);
+  }, [page, info]);
+
 
   return (
     <div className="rigth_main">
