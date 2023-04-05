@@ -22,7 +22,7 @@ export default class PostService {
   }
 
   static async getAllStreet() {
-    const res = await axios.get("https://localhost:44330/api/Aparts/all");
+    const res = await axios.get("https://localhost:44330/api/Aparts/allStreet");
     return res;
   }
 }

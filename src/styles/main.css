@@ -2,9 +2,10 @@
 * {
     font-family: "Montserrat";
 }
-.body {
+body {
     font-family: "Montserrat", sans-serif;
     width: 100%;
+    height: 100%;
     padding: 0;
     margin: 0;
 }
@@ -735,7 +736,7 @@
     display: block;
 }
 .input_signin {
-    width: 70%;
+    width: 88%;
     font-size: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -755,7 +756,49 @@
     border-radius: 20px;
     cursor: pointer;
     transition: 0.3s linear;
+    font-weight: bold;
 }
 .new_btn:hover {
     background-color: rgb(1, 85, 85);
+}
+.new_btn-mini {
+    font-size: 20px;
+    padding: 7px 25px 7px 25px;
+}
+.mainacc {
+    width: 100%;
+    height: 100%;
+}
+.logn_name {
+    background-color: rgb(76, 255, 255);
+    padding: 10px;
+    border-radius: 15px;
+}
+.infoUser {
+    font-size: 20px;
+    margin-top: 50px;
+}
+.infoUser_Body {
+    width: 45%;
+    font-weight: 500;
+    display: flex;
+    margin-top: 10px;
+}
+.infoUser_Body_left {
+    width: 25%;
+}
+.infoUser_Body_rigth {
+    margin-left: 10px;
+}
+.infoUserApart {
+    margin-top: 50px;
+    font-size: 20px;
+    width: 60%;
+    display: flex;
+}
+.infoUserApart_left {
+    width: 50%;
+}
+.infoUserApart_rigth {
+    width: 50%;
 }
