@@ -5,11 +5,16 @@ import { MainAcc } from "../components/MainAcc";
 
 const PersonalCab = () => {
     const [cookie, setCookie, removeCookie] = useCookies(["role"])
-    setCookie("role", "user", { path: "/" });
+    // setCookie("role", "user", { path: "/" });
+
+    const change = (temp) => {
+        setCookie("role", temp.role, { path: "/" });
+        setCookie("jwt", temp.jwtToken, { path: "/" });
+    }
 
     return(
         <div className="main">
-            {cookie.role == "user" ? <MainAcc /> : <SignInSingUp />}
+            {cookie.role == "user" ? <MainAcc /> : <SignInSingUp onChange={change}/>}
         </div>
     )
 }
