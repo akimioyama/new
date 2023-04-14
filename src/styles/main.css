@@ -244,8 +244,6 @@ body {
     transition: 0.5s linear;
     cursor: pointer;
     padding: 7px 15px 7px 15px;
-
-
 }
 .result {
     min-height: 500px;
@@ -296,7 +294,7 @@ body {
     width: 100%;
     position: absolute;
     padding: 0;
-    bottom: -150%;
+    bottom: -156%;
     left: 0;
 }
 .footer_about {
@@ -765,7 +763,7 @@ body {
     font-size: 20px;
     padding: 7px 25px 7px 25px;
 }
-.new_btn-red{
+.new_btn-red {
     background-color: red;
 }
 .new_btn-red:hover {
@@ -812,20 +810,62 @@ body {
 }
 .infoUserApart_rigth {
     width: 50%;
+    height: 20%;
 }
 .infoerr {
     color: red;
     font-size: 18px;
 }
-.qqq {
-    background-color: aqua;
-    height: 450px;
-    width: 800px;
-    overflow-x: overlay;    
+.createApart {
+    width: 340%;
+    height: 820px;
+    border: 1px solid teal;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 24px;
+}
+.createApart_item {
+    margin-top: 1px;
+    font-size: 24px;
+    padding: 5px;
+}
+.createApart_item_body {
+    width: 75%;
     display: flex;
 }
-.qq1 {
-    margin: 10px;
-    background-color: bisque;
-    min-width: 350px;
+.inputFile {
+    font-size: 24px;
+    color: red;
+}
+.selectCreate {
+    font-size: 24px;
+}
+.inputCreate {
+    margin-left: 1%;
+    font-size: 24px;
+    width: 30%;
+    text-align: center;
+    margin-right: 1%;
+}
+.inputCreate-min {
+    width: 10%;
+}
+.inputCreate-mid {
+    width: 15%;
+}
+.createApart_body {
+    display: flex;
+}
+.createApart_body_left {
+    width: 45%;
+}
+.createApart_body_rigth {
+    width: 55%;
+}
+.textarea_create {
+    font-size: 24px;
+    padding: 5px;
+    width: 90%;
+    resize: none;
+    height: 250px;
 }

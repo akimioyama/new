@@ -40,15 +40,14 @@
     --organic-arrow-thickness: 11px;
     --organic-arrow-border-radius: 30px;
     --organic-arrow-height: 45px;
-    --organic-arrow-color: rgb(40, 41, 40);
+    --organic-arrow-color: rgb(255, 255, 255);
     --control-button-width: 7%;
     --control-button-height: 25%;
     --control-button-background: transparent;
     --control-bullet-color: rgb(40, 41, 40);
     --control-bullet-active-color: rgb(40, 41, 40);
     --loader-bar-color: #851515;
-    --loader-bar-height: 6px;
-}
+    --loader-bar-height: 6px;}
 
 .awssld {
     display: block;
