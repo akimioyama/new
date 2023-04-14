@@ -46,6 +46,10 @@ export default class PostService {
     })
     return res;
   }
+  static async changeUser(data, conf){
+    const res = await axios.put("https://localhost:44330/api/Arendatels", data, conf)
+    return res
+  }
   static async getInfo(conf) {
     const res = await axios.get("https://localhost:44330/api/Arendatels", conf);
     return res
@@ -54,8 +58,8 @@ export default class PostService {
     const res = await axios.post("https://localhost:44330/api/Image/" + id)
     return res
   }
-  static async createApp(conf) {
-    const res = await axios.post("https://localhost:44330/api/Aparts", conf)
+  static async createApp(conf, config) {
+    const res = await axios.post("https://localhost:44330/api/Aparts", conf, config)
     return res
   }
 }

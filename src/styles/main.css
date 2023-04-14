@@ -799,6 +799,9 @@ body {
 .infoUser_Body_rigth {
     margin-left: 10px;
 }
+.infoUser_Body_rigth_input {
+    font-size: 20px;
+}
 .infoUserApart {
     margin-top: 50px;
     font-size: 20px;
@@ -868,4 +871,8 @@ body {
     width: 90%;
     resize: none;
     height: 250px;
+}
+.errorInfo {
+    color: red;
+    font-size: 22px;
 }

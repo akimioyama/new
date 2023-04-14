@@ -1,11 +1,11 @@
 import React from "react";
 import PostService from "../API/PostService";
 import { useState } from "react";
-import { MyDropList } from "./UI/MyDropList/MyDropList";
-import { useEffect } from "react";
-import axios from "axios";
+import { useCookies } from "react-cookie";
+
 
 const CreateApart = ({ id_user, onChange }) => {
+  const [cookie, setCookie, removeCookie] = useCookies(["role"]);
   const imgChange = (event) => {};
 
   async function addApp() {
@@ -139,7 +139,15 @@ const CreateApart = ({ id_user, onChange }) => {
       text: text,
     };
     console.log(conf);
-    const response = await PostService.createApp(conf);
+    let jwt = cookie?.jwt;
+    let config = {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    };
+    console.log(config)
+    const response = await PostService.createApp(conf, config);
     console.log(response.data);
     let id_apart = response.data;
     if (id_apart != "-1") {

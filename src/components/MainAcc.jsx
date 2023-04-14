@@ -11,7 +11,11 @@ const MainAcc = () => {
   const [fio, setFio] = useState("");
   const [telepon, setTelepone] = useState("");
   const [email, setEmail] = useState("");
-  const [id, setId] = useState("")
+  const [id, setId] = useState("");
+
+  const [newFio, setNewFio] = useState('');
+  const [newTel, setNewTel] = useState('');
+  const [newEmail, setNewEmail] = useState('');
 
   async function restApi() {
     let jwt = cookie?.jwt;
@@ -26,7 +30,11 @@ const MainAcc = () => {
     setFio(respons.data.fio);
     setTelepone(respons.data.telefon);
     setEmail(respons.data.email);
-    setId(respons.data.id_arendatel)
+    setId(respons.data.id_arendatel);
+
+    setNewFio(respons.data.fio)
+    setNewEmail(respons.data.email)
+    setNewTel(respons.data.telefon)
   }
 
   useEffect(() => {
@@ -40,17 +48,54 @@ const MainAcc = () => {
 
   const [look, setLook] = useState(false);
   function createApp() {
-    if (look == true){
-      setLook(false)
-    }
-    else {
-      setLook(true)
+    if (look == true) {
+      setLook(false);
+    } else {
+      setLook(true);
     }
   }
   function qwewqe() {
-    setLook(false)
+    setLook(false);
   }
 
+  const [changeInfo, setChangeInfo] = useState(false);
+  const changeUser = () => {
+    setChangeInfo(true);
+  };
+  const closeChange = () => {
+    setChangeInfo(false);
+    setNewFio(fio)
+    setNewEmail(email)
+    setNewTel(telepon)
+  };
+
+
+  const [error, setError] = useState("")
+  async function newInfoUser() {
+    let data = {
+      "login": "string",
+      "password": "string",
+      "telepon": newTel,
+      "email": newEmail,
+      "fio": newFio
+    }
+    let jwt = cookie?.jwt;
+    let conf = {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    };
+    let respons = await PostService.changeUser(data, conf)
+    console.log(respons.data)
+    if(respons.data == "Изменили"){
+      setChangeInfo(false)
+      restApi()
+    }
+    else{
+      setError(respons.data)
+    }
+  };
 
   return (
     <div className="mainacc">
@@ -64,35 +109,79 @@ const MainAcc = () => {
       </h1>
       <div className="infoUser">
         <h3>Информация о пользователе:</h3>
-        <div className="infoUser_Body">
-          <div className="infoUser_Body_left">ФИО:</div>
-          <div className="infoUser_Body_rigth">{fio}</div>
-        </div>
-        <div className="infoUser_Body">
-          <div className="infoUser_Body_left">Телефон:</div>
-          <div className="infoUser_Body_rigth">{telepon}</div>
-        </div>
-        <div className="infoUser_Body">
-          <div className="infoUser_Body_left">Почта:</div>
-          <div className="infoUser_Body_rigth">{email}</div>
-        </div>
+        {changeInfo == false ? (
+          <div>
+            <div className="infoUser_Body">
+              <div className="infoUser_Body_left">ФИО:</div>
+              <div className="infoUser_Body_rigth">{fio}</div>
+            </div>
+            <div className="infoUser_Body">
+              <div className="infoUser_Body_left">Телефон:</div>
+              <div className="infoUser_Body_rigth">{telepon}</div>
+            </div>
+            <div className="infoUser_Body">
+              <div className="infoUser_Body_left">Почта:</div>
+              <div className="infoUser_Body_rigth">{email}</div>
+            </div>
+            <button className="new_btn new_btn-mini" onClick={changeUser}>
+              Изменить
+            </button>
+          </div>
+        ) : (
+          <div>
+            {error == "" ? "" : (<div className="errorInfo">{error}</div>)}
+            <div className="infoUser_Body">
+              <div className="infoUser_Body_left">ФИО:</div>
+              <input
+                className="infoUser_Body_rigth_input"
+                value={newFio}
+                onChange={(event) => setNewFio(event.target.value)}
+              />
+            </div>
+            <div className="infoUser_Body">
+              <div className="infoUser_Body_left">Телефон:</div>
+              <input
+                className="infoUser_Body_rigth_input"
+                value={newTel}
+                onChange={(event) => setNewTel(event.target.value)}
+              />
+            </div>
+            <div className="infoUser_Body">
+              <div className="infoUser_Body_left">Почта:</div>
+              <input
+                className="infoUser_Body_rigth_input"
+                value={newEmail}
+                onChange={(event) => setNewEmail(event.target.value)}
+              />
+            </div>
+            <div>
+              <button className="new_btn new_btn-mini" onClick={newInfoUser}>
+                Изменить информацию
+              </button>
+            </div>
+            <div>
+              <button
+                className="new_btn new_btn-red new_btn-mini"
+                onClick={closeChange}
+              >
+                Отмена
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-      <div>
-        <button className="new_btn new_btn-mini">Изменить</button>
-      </div>
+      <div></div>
       <div className="infoUserApart">
         <div className="infoUserApart_left">
           <div className="infoUserApart_header">
             <h3>Список объявлений:</h3>
             {look == true ? <CreateApart id_user={id} onChange={qwewqe} /> : ""}
-            <div>
-              Список
-            </div>
+            <div>Список</div>
           </div>
         </div>
         <div className="infoUserApart_rigth">
           <button className="new_btn new_btn-mini" onClick={createApp}>
-            Окно добавления 
+            Окно добавления
           </button>
         </div>
       </div>
