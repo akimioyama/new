@@ -10,6 +10,7 @@ const PersonalCab = () => {
     const change = (temp) => {
         setCookie("role", temp.role, { path: "/" });
         setCookie("jwt", temp.jwtToken, { path: "/" });
+        setCookie("id", temp.id, { path: "/" });
     }
 
     return(

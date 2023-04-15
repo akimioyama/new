@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PostService from "../API/PostService";
 import { MySlider } from "../components/UI/MySlider/MySlider";
+import { useCookies } from "react-cookie";
 
 function House() {
   const { id } = useParams();
   const [house, setHouse] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [photo, setPhoto] = useState([]);
-  const qwe = []
+  const [cookie, setCookie, removeCookie] = useCookies(["role"]);
+  const [user, setUser] = useState(false);
+
+  const qwe = [];
 
   async function Api() {
     setIsLoading(true);
@@ -18,14 +22,17 @@ function House() {
 
     const idid = response.data.id;
     const pic = response.data.count_pic;
-    console.log(idid, pic)
 
-    for(let i = 1; i <= pic; i++){
-      let temp = "https://localhost:44330/api/Image?name=item" + idid 
-      + "_" + i + ".jpg"
-      qwe.push(temp)
+    for (let i = 1; i <= pic; i++) {
+      let temp =
+        "https://localhost:44330/api/Image?name=item" + idid + "_" + i + ".jpg";
+      qwe.push(temp);
     }
-    setPhoto(qwe)
+    setPhoto(qwe);
+
+    if (cookie?.id == response.data.id_arendatel) {
+      setUser(true);
+    }
   }
 
   useEffect(() => {
@@ -204,6 +211,12 @@ function House() {
                   <span className="it">{house.price}</span> рублей + к/у.
                 </div>
               </div>
+              <div className="specifications">
+                <div className="specifications_left">Площадь: </div>
+                <div className="specifications_rigth">
+                  <span className="it">{house.metrov}</span> кв. метров
+                </div>
+              </div>
 
               <h2>Описание объекта</h2>
               <div className="item_footer_rigth_text">{house.text}</div>
@@ -211,7 +224,14 @@ function House() {
                 <div className="idid_code">Код объекта:</div>
                 <div className="code">{house.id}</div>
                 <div className="item_btn">
-                  <button className="btnbtn">Связатсья с нами</button>
+                  {user == true ? (
+                    <div>
+                      <button className="new_btn">Изменить</button>
+                      <button className="new_btn new_btn-red">Удалить</button>
+                    </div>
+                  ) : (
+                    <button className="new_btn">Связатсья с нами</button>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,12 +1,23 @@
 import React from "react";
 import { Item } from "./Item";
+import { ItemInLk } from "./ItemInLk"
 
-const PostList = ({posts}) => {
+const PostList = ({ posts, local }) => {
   return (
     <div className="result">
-      {posts?.map((q) => (
-        <Item post={q} key={q.id} />
-      ))}
+      {local != "lk" ? (
+        <div>
+          {posts?.map((q) => (
+            <Item post={q} key={q.id} />
+          ))}
+        </div>
+      ) : (
+        <div className="postListUser">
+          {posts?.map((q) => (
+            <ItemInLk post={q} key={q.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

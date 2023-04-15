@@ -7,7 +7,8 @@ const Item = (props) => {
 
     return(
         <div className="item">
-              <a href={appi} target="_blank">
+              <a href={appi}>
+                {/* target="_blank" */}
                 <div className="item_img">
                   <img className="img" src={image} alt="" />
                   <div className="item_about">
@@ -16,7 +17,7 @@ const Item = (props) => {
                     </div>
                     <div className="item_about_about">
                       <h3>
-                        район {props.post.district}, комнат {props.post.apart}
+                        район {props.post.district}, комнат {props.post.apart}, {props.post.metrov} кв. метров
                       </h3>
                     </div>
                     <div className="item_about_price">

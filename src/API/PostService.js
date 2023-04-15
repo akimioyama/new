@@ -54,12 +54,21 @@ export default class PostService {
     const res = await axios.get("https://localhost:44330/api/Arendatels", conf);
     return res
   }
+  static async getApartById(conf) {
+    const res = await axios.get("https://localhost:44330/api/Aparts/byid", conf)
+    return res
+  }
   static async postImg(id) {
     const res = await axios.post("https://localhost:44330/api/Image/" + id)
     return res
   }
   static async createApp(conf, config) {
     const res = await axios.post("https://localhost:44330/api/Aparts", conf, config)
+    return res
+  }
+
+  static async changeForRent(data, conf) {
+    const res = await axios.put("https://localhost:44330/api/Aparts/forrent/" + data, conf)
     return res
   }
 }

@@ -208,7 +208,8 @@ const Filter = ({onChange}) => {
       bathroom_shower: bathroom_shower11,
       kitchen_stove: kitchen_stove11,
       ceiling_height: ceiling_height11,
-      lavatory: lavatory11
+      lavatory: lavatory11,
+      metrov: null
     }
     PostService.filter = conf
     console.log(PostService.filter)

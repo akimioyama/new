@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import PostService from "../API/PostService";
 import { CreateApart } from "./CreateApart";
+import { PostList } from "../components/PostList"
 
 const MainAcc = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["role"]);
@@ -39,11 +40,13 @@ const MainAcc = () => {
 
   useEffect(() => {
     restApi();
+    restPost();
   }, []);
 
   const logout = () => {
     removeCookie("role");
     removeCookie("jwt");
+    removeCookie("id");
   };
 
   const [look, setLook] = useState(false);
@@ -87,7 +90,6 @@ const MainAcc = () => {
       },
     };
     let respons = await PostService.changeUser(data, conf)
-    console.log(respons.data)
     if(respons.data == "Изменили"){
       setChangeInfo(false)
       restApi()
@@ -96,6 +98,19 @@ const MainAcc = () => {
       setError(respons.data)
     }
   };
+
+  const [post, setPost] = useState([])
+  async function restPost(){
+    let jwt = cookie?.jwt;
+    let conf = {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    };
+    const respons = await PostService.getApartById(conf)
+    setPost(respons.data)
+  }
 
   return (
     <div className="mainacc">
@@ -176,7 +191,13 @@ const MainAcc = () => {
           <div className="infoUserApart_header">
             <h3>Список объявлений:</h3>
             {look == true ? <CreateApart id_user={id} onChange={qwewqe} /> : ""}
-            <div>Список</div>
+            <div className="postlist_user">
+              {post != [] ? (
+                <PostList posts={post} local={"lk"} />
+              ) : (
+                <div>Вы не добавили ни одного объявления</div>
+              )}
+            </div>
           </div>
         </div>
         <div className="infoUserApart_rigth">

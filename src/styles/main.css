@@ -826,6 +826,7 @@ body {
     border-radius: 5px;
     padding: 10px;
     font-size: 24px;
+    margin-bottom: 10px;
 }
 .createApart_item {
     margin-top: 1px;
@@ -875,4 +876,24 @@ body {
 .errorInfo {
     color: red;
     font-size: 22px;
+}
+.infoUserApart_header {
+    width: 100%;
+}
+.postlist_user {
+    display: flex;
+    width: 250%;
+}
+.item_about_user {
+    display: flex;
+}
+.www {
+    position: relative;
+}
+.qqq {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
+    z-index: 999;
 }
