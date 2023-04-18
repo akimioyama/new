@@ -13,61 +13,61 @@ const ItemInLk = (props) => {
     event.preventDefault();
     event.stopPropagation();
     const data = props.post.id;
-    let jwt = cookie?.jwt;
-    console.log("https://localhost:44330/api/Aparts/forrent/" + data)
-    let conf = {
+    let jwt = cookie.jwt;
+    let config = {
       headers: {
+        Accept: "application/json",
         Authorization: "Bearer " + jwt,
       },
     };
-    console.log(conf)
-    const respons = await PostService.changeForRent(data, conf);
-    console.log(respons);
+    let response = await PostService.changeForRent(data, config)
+    if(response.data == "Изменили"){
+      props.change()
+    }
   }
 
   return (
-    <div className="item">
-      <a href={appi}>
-        {/* target="_blank" */}
-        <div className="item_img">
-          <img className="img" src={image} alt="" />
-          <div className="item_about">
-            <div className="item_about_header">
-              <h1>
-                {props.post.street}, {props.post.house}
-              </h1>
-            </div>
-            <div className="item_about_about">
-              <h3>
-                район {props.post.district}, комнат {props.post.apart},{" "}
-                {props.post.metrov} кв. метров
-              </h3>
-            </div>
-            <div className="item_about_price">
-              <h3>{props.post.price} Rub</h3>
-            </div>
-            {props.post.for_rent == 1 ? (
-              <div className="qqq">
-                <button
-                  onClick={changeForRent}
-                  className="new_btn new_btn-red new_btn-mini"
-                >
-                  Снять объявление
-                </button>
+    <div>
+      <div className="item">
+        <a href={appi}>
+          {/* target="_blank" */}
+          <div className="item_img">
+            <img className="img" src={image} alt="" />
+            <div className="item_about">
+              <div className="item_about_header">
+                <h1>
+                  {props.post.street}, {props.post.house}
+                </h1>
               </div>
-            ) : (
-              <div className="qqq">
-                <button
-                  onClick={changeForRent}
-                  className="new_btn new_btn-mini"
-                >
-                  Включить в поиск
-                </button>
+              <div className="item_about_about">
+                <h3>
+                  район {props.post.district}, комнат {props.post.apart},{" "}
+                  {props.post.metrov} кв. метров
+                </h3>
               </div>
-            )}
-          </div>
+              <div className="item_about_price">
+                <h3>{props.post.price} Rub</h3>
+              </div>
+              {props.post.for_rent == 1 ? (
+        <div className="qqq">
+          <button
+            onClick={changeForRent}
+            className="new_btn new_btn-red new_btn-mini"
+          >
+            Снять объявление
+          </button>
         </div>
-      </a>
+      ) : (
+        <div className="qqq">
+          <button onClick={changeForRent} className="new_btn new_btn-mini">
+            Включить в поиск
+          </button>
+        </div>
+      )}
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   );
 };

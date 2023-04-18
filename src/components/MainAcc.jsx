@@ -111,6 +111,9 @@ const MainAcc = () => {
     const respons = await PostService.getApartById(conf)
     setPost(respons.data)
   }
+  const change = () => {
+    restPost()
+  }
 
   return (
     <div className="mainacc">
@@ -193,7 +196,7 @@ const MainAcc = () => {
             {look == true ? <CreateApart id_user={id} onChange={qwewqe} /> : ""}
             <div className="postlist_user">
               {post != [] ? (
-                <PostList posts={post} local={"lk"} />
+                <PostList change1={change} posts={post} local={"lk"} />
               ) : (
                 <div>Вы не добавили ни одного объявления</div>
               )}

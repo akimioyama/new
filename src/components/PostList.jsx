@@ -2,7 +2,12 @@ import React from "react";
 import { Item } from "./Item";
 import { ItemInLk } from "./ItemInLk"
 
-const PostList = ({ posts, local }) => {
+const PostList = ({ posts, local, change1 }) => {
+
+  const change = () => {
+    change1()
+  }
+
   return (
     <div className="result">
       {local != "lk" ? (
@@ -14,7 +19,7 @@ const PostList = ({ posts, local }) => {
       ) : (
         <div className="postListUser">
           {posts?.map((q) => (
-            <ItemInLk post={q} key={q.id} />
+            <ItemInLk change={change} post={q} key={q.id} />
           ))}
         </div>
       )}

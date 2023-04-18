@@ -15,7 +15,8 @@ const PersonalCab = () => {
 
     return(
         <div className="main">
-            {cookie.role == "user" ? <MainAcc /> : <SignInSingUp onChange={change}/>}
+            {cookie.role == "user" ? <MainAcc /> : 
+             <SignInSingUp onChange={change}/>}
         </div>
     )
 }

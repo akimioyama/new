@@ -68,7 +68,43 @@ export default class PostService {
   }
 
   static async changeForRent(data, conf) {
-    const res = await axios.put("https://localhost:44330/api/Aparts/forrent/" + data, conf)
+    const res = await axios.get("https://localhost:44330/api/Aparts/q/" + data, conf)
+    return res
+  }
+
+  static async changeInfoApp(data, conf){
+    const res = await axios.put("https://localhost:44330/api/Aparts", data, conf)
+    return res
+  }
+  static async loginAdmin(data){
+    let res = null
+    await axios.post("https://localhost:44330/api/Account/loginadmin", data)
+    .then(function (response){
+      res = response
+    }).catch(function (err) {
+      res = err
+    })
+    return res;
+  }
+
+  static async createReq(data) {
+    const res = await axios.post("https://localhost:44330/api/Request", data)
+    return res
+  }
+  static async getInfoAdmin(conf) {
+    const res = await axios.get("https://localhost:44330/api/Admin", conf)
+    return res
+  }
+  static async getReq(status) {
+    const res = await axios.get("https://localhost:44330/api/Request/" + status)
+    return res
+  }
+  static async getReqProc(status, conf) {
+    const res = await axios.get("https://localhost:44330/api/Request/" + status, conf)
+    return res
+  }
+  static async changeStatus(data) {
+    const res = await axios.post("https://localhost:44330/api/Request/change", data)
     return res
   }
 }

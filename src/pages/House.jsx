@@ -11,6 +11,8 @@ function House() {
   const [photo, setPhoto] = useState([]);
   const [cookie, setCookie, removeCookie] = useCookies(["role"]);
   const [user, setUser] = useState(false);
+  const [newPrice, setNewPrice] = useState();
+  const [newText, setNewText] = useState();
 
   const qwe = [];
 
@@ -19,6 +21,9 @@ function House() {
     const response = await PostService.getOne(id);
     setHouse(response.data);
     setIsLoading(false);
+
+    setNewPrice(response.data.price);
+    setNewText(response.data.text);
 
     const idid = response.data.id;
     const pic = response.data.count_pic;
@@ -29,15 +34,90 @@ function House() {
       qwe.push(temp);
     }
     setPhoto(qwe);
-
-    if (cookie?.id == response.data.id_arendatel) {
+    if (cookie?.id == response.data.id_arendatel || cookie?.role == "admin") {
       setUser(true);
     }
+    setChange(false);
   }
 
   useEffect(() => {
     Api();
   }, []);
+
+  const [change, setChange] = useState(false);
+  const changeinfo = () => {
+    if (change == false) {
+      setChange(true);
+    } else {
+      setChange(false);
+      setNewText(house.text);
+      setNewPrice(house.price);
+    }
+  };
+  async function changeInfoAboutApp() {
+    let price = document.getElementById("newPrice").value;
+    let furniture = document.getElementById("select_furniture").value;
+    let technic = document.getElementById("select_technic").value;
+    let evro_repair = document.getElementById("select_evro_repair").value;
+    let animals = document.getElementById("select_animals").value;
+    let elevator = document.getElementById("select_elevator").value;
+    let walls = document.getElementById("select_walls").value;
+    let text = document.getElementById("newText").value;
+
+    if (furniture == "false") {
+      furniture = false;
+    } else {
+      furniture = true;
+    }
+    if (technic == "false") {
+      technic = false;
+    } else {
+      technic = true;
+    }
+    if (evro_repair == "false") {
+      evro_repair = false;
+    } else {
+      evro_repair = true;
+    }
+    if (animals == "false") {
+      animals = false;
+    } else {
+      animals = true;
+    }
+    if (elevator == "false") {
+      elevator = false;
+    } else {
+      elevator = true;
+    }
+
+    let data = {
+      id: house.id,
+      price: price,
+      furniture: furniture,
+      technic: technic,
+      evro_repair: evro_repair,
+      animals: animals,
+      elevator: elevator,
+      walls: String(walls),
+      text: text,
+    };
+    console.log(data);
+
+    const jwt = cookie?.jwt;
+    const config = {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    };
+
+    if (cookie?.role == user) {
+      let response = await PostService.changeInfoApp(data, config);
+      if (response.data == "Изменили") {
+        Api();
+      }
+    }
+  }
 
   return (
     <div className="main">
@@ -72,7 +152,6 @@ function House() {
               </div>
 
               <div className="specifications">
-                {/* <div className="specifications_left">Удобства</div> */}
                 <div className="specifications_left">С мебель</div>
                 <div className="specifications_rigth">
                   {house.furniture == 1 ? (
@@ -223,20 +302,170 @@ function House() {
               <div className="idid">
                 <div className="idid_code">Код объекта:</div>
                 <div className="code">{house.id}</div>
-                <div className="item_btn">
-                  {user == true ? (
-                    <div>
-                      <button className="new_btn">Изменить</button>
-                      <button className="new_btn new_btn-red">Удалить</button>
+              </div>
+              <div className="item_btn">
+                {user == true ? (
+                  <div>
+                    <div className="item_btn_f">
+                      <button className="new_btn" onClick={changeinfo}>
+                        Изменить
+                      </button>
                     </div>
-                  ) : (
-                    <button className="new_btn">Связатсья с нами</button>
-                  )}
-                </div>
+                    <div className="item_btn_f">
+                      <button className="new_btn new_btn-red">Удалить?!</button>
+                    </div>
+                  </div>
+                ) : (
+                  <button className="new_btn">Связатсья с нами</button>
+                )}
               </div>
             </div>
           </div>
         </div>
+        {change == false ? (
+          ""
+        ) : (
+          <div className="changeInfo">
+            <h2>Все поля обязательны для заполнения</h2>
+            <div className="specifications_ch">
+              <div className="specifications">
+                <div className="specifications_left">Стоимость в месяц</div>
+                <div className="specifications_rigth">
+                  <input
+                    id="newPrice"
+                    className="fontsize22"
+                    type="text"
+                    value={newPrice}
+                    onChange={(e) => setNewPrice(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">С мебелью</div>
+                {house.furniture == 1 ? (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_furniture">
+                      <option value="true">Да</option>
+                      <option value="false">Нет</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_furniture">
+                      <option value="false">Нет</option>
+                      <option value="true">Да</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">С техникой</div>
+                {house.technic == 1 ? (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_technic">
+                      <option value="true">Да</option>
+                      <option value="false">Нет</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_technic">
+                      <option value="false">Нет</option>
+                      <option value="true">Да</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">EVRO-ремонт</div>
+                {house.evro_repair == 1 ? (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_evro_repair">
+                      <option value="true">Да</option>
+                      <option value="false">Нет</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_evro_repair">
+                      <option value="false">Нет</option>
+                      <option value="true">Да</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">Можно с животными</div>
+                {house.animals == 1 ? (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_animals">
+                      <option value="true">Да</option>
+                      <option value="false">Нет</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_animals">
+                      <option value="false">Нет</option>
+                      <option value="true">Да</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">Есть лифт</div>
+                {house.elevator == 1 ? (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_elevator">
+                      <option value="true">Да</option>
+                      <option value="false">Нет</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_elevator">
+                      <option value="false">Нет</option>
+                      <option value="true">Да</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">Стены</div>
+                {house.walls == "Краска" ? (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_walls">
+                      <option value="Краска">Краска</option>
+                      <option value="Обои">Обои</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className="specifications_rigth">
+                    <select className="fontsize22" id="select_walls">
+                      <option value="Обои">Обои</option>
+                      <option value="Краска">Краска</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <div className="specifications">
+                <div className="specifications_left">Описание</div>
+                <div className="specifications_rigth">
+                  <textarea
+                    id="newText"
+                    className="textarea_create fontsize22"
+                    value={newText}
+                    onChange={(e) => setNewText(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+
+              <button className="new_btn" onClick={changeInfoAboutApp}>
+                Изменить!
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
