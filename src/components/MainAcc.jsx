@@ -59,6 +59,7 @@ const MainAcc = () => {
   }
   function qwewqe() {
     setLook(false);
+    restPost();
   }
 
   const [changeInfo, setChangeInfo] = useState(false);

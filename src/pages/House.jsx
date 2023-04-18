@@ -101,7 +101,6 @@ function House() {
       walls: String(walls),
       text: text,
     };
-    console.log(data);
 
     const jwt = cookie?.jwt;
     const config = {
@@ -111,7 +110,7 @@ function House() {
       },
     };
 
-    if (cookie?.role == user) {
+    if (cookie?.role == "user") {
       let response = await PostService.changeInfoApp(data, config);
       if (response.data == "Изменили") {
         Api();
