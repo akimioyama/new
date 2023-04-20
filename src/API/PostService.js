@@ -107,4 +107,12 @@ export default class PostService {
     const res = await axios.post("https://localhost:44330/api/Request/change", data)
     return res
   }
+  static async infoAboutArend(id) {
+    const res = await axios.get("https://localhost:44330/api/Arendatels/q/" + id)
+    return res
+  }
+  static async deleteApart(id, conf) {
+    const res = await axios.delete("https://localhost:44330/api/Aparts/del/" + id, conf)
+    return res
+  }
 }

@@ -33,6 +33,10 @@ const CreateApart = ({ id_user, onChange }) => {
     if (price == "") {
       price = null;
     }
+    let metrov = document.getElementById("metrov").value
+    if (metrov == "") {
+      metrov = null;
+    }
     const otherDiv = document.querySelector(".other");
     const elements = otherDiv.querySelectorAll(".other_span-red");
 
@@ -137,6 +141,8 @@ const CreateApart = ({ id_user, onChange }) => {
       for_rent: true,
       count_pic: count_pic,
       text: text,
+      metrov: metrov,
+      dele: false
     };
     console.log(conf);
     let jwt = cookie?.jwt;
@@ -208,6 +214,10 @@ const CreateApart = ({ id_user, onChange }) => {
       <div className="createApart_item">
         <label>Количество комнат: </label>
         <input id="apart" className="inputCreate inputCreate-min" type="text" />
+      </div>
+      <div className="createApart_item">
+        <label>Кв. метров: </label>
+        <input id="metrov" className="inputCreate inputCreate-min" type="text" />
       </div>
       <div className="createApart_item">
         <label>Стоимость в месяц: </label>
@@ -328,6 +338,9 @@ const CreateApart = ({ id_user, onChange }) => {
           </div>
         </div>
       </div>
+      <br />
+      Все поля обязательны для заполнения!
+      <br />
       <button className="new_btn" onClick={addApp}>
         Добавить!
       </button>

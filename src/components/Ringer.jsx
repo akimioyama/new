@@ -75,7 +75,7 @@ const Ringer = () => {
         </div>
       </div>
       <div className="workMain">
-        <h3>Рабочая облость</h3>
+        <h3>Рабочая область</h3>
         <div className="workare">
           <div className="workare_left">
             Новые заявки:

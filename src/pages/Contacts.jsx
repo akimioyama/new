@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import PostService from "../API/PostService";
+import { Footer } from "../components/Footer";
 
 function Contacts() {
   const [err, setErr] = useState("");
@@ -53,7 +54,7 @@ function Contacts() {
           {err == "" ? "" : <div className="errorInfo mar mar-left">{err}</div>}
           <div className="namename">
             <div className="namename_left">
-              <label htmlFor="">Имя: </label>
+              <label htmlFor="">Имя: *</label>
             </div>
             <div className="namename_rigth">
               <input type="text" id="name" />
@@ -61,7 +62,7 @@ function Contacts() {
           </div>
           <div className="namename">
             <div className="namename_left">
-              <label htmlFor="">Телефон: </label>
+              <label htmlFor="">Телефон: *</label>
             </div>
             <div className="namename_rigth">
               <input type="text" id="telepone" />
@@ -69,7 +70,7 @@ function Contacts() {
           </div>
           <div className="namename">
             <div className="namename_left">
-              <label htmlFor="">Почта: </label>
+              <label htmlFor="">Почта: *</label>
             </div>
             <div className="namename_rigth">
               <input type="text" id="email" />
@@ -77,13 +78,14 @@ function Contacts() {
           </div>
           <div className="namename">
             <div className="namename_left">
-              <label htmlFor="">Сообщение: </label>
+              <label htmlFor="">Сообщение: *</label>
             </div>
             <div className="namename_rigth">
               <textarea name="" id="text" cols="30" rows="10"></textarea>
             </div>
           </div>
           <div className="contacts_btn">
+          * - обязательные поля
             <div className="contacts_btnbtn">
               <button className="btnbtn" onClick={sendReq}>
                 Отправить
@@ -100,11 +102,14 @@ function Contacts() {
           <h2>8-990-232-34-54</h2>
           <h2>
             Почта:
-            <a className="a" href="mailto:legion@legin.ru">
+            <a className="a" href="mailto:lider@lider.ru">
               legion@legin.ru
             </a>
           </h2>
         </div>
+        <div>
+        {/* <Footer /> */}
+      </div>
       </div>
     </div>
   );

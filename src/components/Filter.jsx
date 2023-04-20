@@ -63,6 +63,15 @@ const Filter = ({onChange}) => {
     else{
       prcie1 = inputMin.value
     }
+    //метров
+    let menrov1
+    const menrov = document.getElementById("menrov")
+    if (menrov.value == ""){
+      menrov1 = null
+    }
+    else{
+      menrov1 = menrov.value
+    }
     //другое
     const otherDiv = document.querySelector(".other");
     const elements = otherDiv.querySelectorAll(".other_span-red");
@@ -209,7 +218,7 @@ const Filter = ({onChange}) => {
       kitchen_stove: kitchen_stove11,
       ceiling_height: ceiling_height11,
       lavatory: lavatory11,
-      metrov: null
+      metrov: menrov1
     }
     PostService.filter = conf
     console.log(PostService.filter)
@@ -224,6 +233,7 @@ const Filter = ({onChange}) => {
       input.checked = false
     });
     document.getElementById("inputPrice").value = ""
+    document.getElementById("menrov").value = ""
     const otherDiv = document.querySelector(".other");
     const elements = otherDiv.querySelectorAll(".other_span-red");
     elements.forEach((element) => {
@@ -307,6 +317,12 @@ const Filter = ({onChange}) => {
           <label>Стоимость до: </label>
           <span>
             <input id="inputPrice" className="inputPrice input-min" type="numbers" /> рублей
+          </span>
+        </div>
+        <div className="price">
+          <label>От: </label>
+          <span>
+            <input id="menrov" className="menrov input-min" type="numbers" /> кв. метров
           </span>
         </div>
         <br />

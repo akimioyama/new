@@ -13,6 +13,7 @@ function House() {
   const [user, setUser] = useState(false);
   const [newPrice, setNewPrice] = useState();
   const [newText, setNewText] = useState();
+  const [infoinfo, setInfoInfo] = useState({});
 
   const qwe = [];
 
@@ -38,6 +39,11 @@ function House() {
       setUser(true);
     }
     setChange(false);
+    let id_1 = response.data.id_arendatel;
+    let res = await PostService.infoAboutArend(id_1);
+    if (res.status == 200) {
+      setInfoInfo(res.data);
+    }
   }
 
   useEffect(() => {
@@ -115,6 +121,27 @@ function House() {
       if (response.data == "Изменили") {
         Api();
       }
+    }
+  }
+  const [infoAboutAprendatel, setInfoAboutAprendatel] = useState(false);
+  async function getInfoAboutArendatel() {
+    if (infoAboutAprendatel == false) {
+      setInfoAboutAprendatel(true);
+    } else {
+      setInfoAboutAprendatel(false);
+    }
+  }
+  async function delapart(){
+    const jwt = cookie?.jwt;
+    const config = {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    };
+    let ress = await PostService.deleteApart(id, config)
+    if(ress.status == 200){
+      window.location.href = "http://localhost:3000/lk"
     }
   }
 
@@ -302,6 +329,19 @@ function House() {
                 <div className="idid_code">Код объекта:</div>
                 <div className="code">{house.id}</div>
               </div>
+              {infoAboutAprendatel == true ? (
+                <div>
+                  <p>
+                    <span className="bold">ФИО:</span> {infoinfo.fio}
+                    <br />
+                    <span className="bold">Телефон:</span> {infoinfo.telefon}
+                    <br />
+                    <span className="bold">Почта:</span> {infoinfo.email}
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
               <div className="item_btn">
                 {user == true ? (
                   <div>
@@ -311,11 +351,15 @@ function House() {
                       </button>
                     </div>
                     <div className="item_btn_f">
-                      <button className="new_btn new_btn-red">Удалить?!</button>
+                      <button className="new_btn new_btn-red"
+                      onClick={delapart}
+                      >Удалить?!</button>
                     </div>
                   </div>
                 ) : (
-                  <button className="new_btn">Связатсья с нами</button>
+                  <button className="new_btn" onClick={getInfoAboutArendatel}>
+                    Информация о владельце
+                  </button>
                 )}
               </div>
             </div>
