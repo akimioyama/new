@@ -115,4 +115,28 @@ export default class PostService {
     const res = await axios.delete("https://localhost:44330/api/Aparts/del/" + id, conf)
     return res
   }
+  static async getAllAdmin(conf) {
+    const res = await axios.get("https://localhost:44330/all", conf)
+    return res
+  }
+  static async deleteAdmin(id, conf) {
+    const res = await axios.delete("https://localhost:44330/api/Admin?id="+id, conf)
+    return res
+  }
+  static async changeAdmin(data, conf) {
+    const res = await axios.put("https://localhost:44330/api/Admin", data, conf)
+    return res
+  }
+  static async createAdmin(data, conf) {
+    const res = await axios.post("https://localhost:44330/api/Admin", data, conf)
+    return res
+  }
+  static async deleteApartAdmin(id, conf) {
+    const res = await axios.delete("https://localhost:44330/api/Aparts/admin/del/"+id, conf)
+    return res
+  } 
+  static async changeApartAdmin(data, conf) {
+    const res = await axios.put("https://localhost:44330/api/Aparts/admin/put", data, conf)
+    return res
+  }
 }

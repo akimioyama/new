@@ -747,7 +747,7 @@ body {
 .new_btn {
     margin-top: 15px;
     color: white;
-    background-color: teal;
+    background-color: rgb(5, 175, 175);
     border: none;
     font-size: 25px;
     padding: 10px 30px 10px 30px;
@@ -971,4 +971,37 @@ body {
 }
 .overflow {
     overflow-wrap: break-word;
+}
+.cardAdmin {
+    width: 70%;
+    min-height: 105px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 128, 128, 0.9);
+    -moz-box-shadow: 0px 0px 0px 1px rgba(0, 128, 128, 0.9);
+    box-shadow: 0px 0px 0px 1px rgba(0, 128, 128, 0.4);
+}
+.cardAdmin_body {
+    display: flex;
+    width: 80%;
+}
+.cardAdmin_body_left {
+    width: 25%;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.cardAdmin_body_rigth {
+    margin-top: 5px;
+    width: 75%;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+.cardAdmin_body_rigth:focus{
+    outline: none;
+}
+.mr{
+    margin-right: 10px;
 }

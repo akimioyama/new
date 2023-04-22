@@ -122,6 +122,12 @@ function House() {
         Api();
       }
     }
+    if (cookie?.role == "admin") {
+      let res = await PostService.changeApartAdmin(data, config);
+      if (res.data == "Изменили") {
+        Api();
+      }
+    }
   }
   const [infoAboutAprendatel, setInfoAboutAprendatel] = useState(false);
   async function getInfoAboutArendatel() {
